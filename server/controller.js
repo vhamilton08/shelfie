@@ -17,6 +17,6 @@ addProduct:(req, res) => {
        const {name} = req.params
        const index = inventory.findIndex(inventory => inventory.productName === productName)
        db.deleteProduct.splice(index, 1)
-       res.status(200).send(roster)
+       res.status(200).send(products)
    }
 }
