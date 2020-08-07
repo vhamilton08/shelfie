@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/header/Header';
 import Dashboard from './components/dashboard/Dashboard';
 import Form from './components/form/Form';
-import Axios from 'axios';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -11,13 +11,13 @@ class App extends Component {
     this.state = {
     inventory: []
     }
-
+    this.get_inventory = this.get_inventory.bind(this)
   }
   componentDidMount(){
     this.get_inventory()
   }
   get_inventory = () => {
-    Axios.get("/api/inventory")
+    axios.get("/api/inventory")
     .then(res => {
       this.setState({
         inventory: res.data
@@ -29,8 +29,8 @@ class App extends Component {
     return(
       <div>
           <Header/>
-          <Dashboard inventory = {this.state.inventory}/>
-          <Form/>
+          <Dashboard inventory = {this.state.inventory} get_inventory = {this.get_inventory}/>
+          <Form get_inventory = {this.get_inventory}/>
       </div>
          
          

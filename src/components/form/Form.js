@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Form extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             imageUrl: "",
             productName: "",
@@ -21,6 +22,20 @@ export default class Form extends Component {
             imageUrl: "", productName: "", price: ""
         })
     }
+   addProduct = () => {
+      const get_inventory = this.props.get_inventory
+       const {name, price, imageUrl} = this.state
+       axios.post('/api/product', {name, price, imageUrl})
+       .then(res => {
+           get_inventory()
+        this.setState({
+            imageUrl: "",
+            productName: "",
+            price: ""
+        })
+       })
+
+   }
 
     render() {
         const {imageUrl, productName, price} = this.state
