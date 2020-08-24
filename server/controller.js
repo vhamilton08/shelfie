@@ -14,9 +14,20 @@ addProduct:(req, res) => {
 },
    deleteProduct:(req, res) => {
        const db = req.app.get('db')
-       const {name} = req.params
-       const index = inventory.findIndex(inventory => inventory.productName === productName)
-       db.deleteProduct.splice(index, 1)
-       res.status(200).send(products)
-   }
+       const {id} = req.params
+       db.delete_product(id)
+       .then(() => {
+           res.status(200).send(products)
+        }).catch(err => console.log(err))
+    },
+
+    editProduct:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+        const {name, price, imageUrl} = req.body
+        db.edit_product(id, name, price, imageUrl)
+        .then(() => {
+            res.sendStatus(200)
+        }).catch(err => console.log(err))
+    }
 }
