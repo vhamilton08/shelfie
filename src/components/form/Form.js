@@ -62,7 +62,7 @@ export default class Form extends Component {
                     onChange={e => this.addProductHandler(e)}/>
                
                     <button onClick={e => this.cancelProductHandler(e)}>Cancel</button>
-                    <button>Add to Inventory</button>
+                    <button onClick={e => this.addProduct(e)}>Add to Inventory</button>
                 </form>
             <div>Form</div>
             </div>

@@ -22,3 +22,6 @@ h1 {
   display: flex;
   display: inline-block;
 }
+h1 {
+  color: black;
+}

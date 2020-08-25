@@ -17,15 +17,22 @@ const getInventory = () => {
       .catch(err => console.log(err))
 
     }
+    const editProduct = (id) => {
+      axios.put(`/api/product/${id}`)
+      .then(() => {
+        this.getInventory()
+      }).catch(err => console.log(err))
+    }
 const Product = (props) => {
-    const {name, price, image} = props.productList
+  console.log(props)
+    const {name, price, imageurl} = props.data
     return (
        <div>
            {getInventory}
            <h1>{name}</h1>
            <h3>${price}</h3>
-           <img alt="product" src={image}/>
-           <button onClick>Edit</button>
+           <img alt="product" src={imageurl}/>
+           <button onClick={editProduct}>Edit</button>
            <button onClick={deleteProduct}>Delete</button>
        </div>
         )

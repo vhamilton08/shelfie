@@ -5,6 +5,9 @@ import axios from 'axios'
 class Dashboard extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            inventory: []
+        }
     }
     
     componentDidMount(){
@@ -14,8 +17,11 @@ class Dashboard extends Component {
               .then(res => this.setState({ inventory: res.data }))
               .catch(err => console.log(err));
         }
+        
+        
     render(){
-        const productList = this.props.inventory.map((el, i) => {
+        console.log(this.state.inventory)
+        const productList = this.state.inventory.map((el, i) => {
           return <Product key={i} data={el}/>
          } )
         return (
@@ -24,8 +30,8 @@ class Dashboard extends Component {
 
         
          <div>Dashboard</div>
-         <Product productList={productList}/>
-         
+         {/* <Product productList={productList}/> */}
+         {productList}
         
         </div>
             )
