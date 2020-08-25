@@ -1,16 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Product from '../product/Product'
+import axios from 'axios'
 
-const Dashboard = (props) => {
+class Dashboard extends Component {
+    constructor(props){
+        super(props)
+    }
     
-    
-    
-    const productList = props.inventory.map((el, i) => (
-        <Product key={i} data={el}/>
-        ))
-    
-    return (
-        <div>
+    componentDidMount(){
+        // const getInventory = () => {
+            axios
+              .get("/api/inventory")
+              .then(res => this.setState({ inventory: res.data }))
+              .catch(err => console.log(err));
+        }
+    render(){
+        const productList = this.props.inventory.map((el, i) => {
+          return <Product key={i} data={el}/>
+         } )
+        return (
+
+            <div>
 
         
          <div>Dashboard</div>
@@ -20,5 +30,5 @@ const Dashboard = (props) => {
         </div>
             )
         }
+        }
         export default Dashboard
-
