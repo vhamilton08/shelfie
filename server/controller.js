@@ -22,12 +22,14 @@ addProduct:(req, res) => {
     },
 
     editProduct:(req, res) => {
+        console.log(req.params)
+        console.log(req.query)
         const db = req.app.get('db')
         const {id} = req.params
-        const {name, price, imageUrl} = req.query
-        db.edit_product(id, name, price, imageUrl)
+        const {price} = req.query
+        db.edit_product([id, price])
         .then(() => {
-            res.status(200).send(products)
+            res.sendStatus(200)
         }).catch(err => console.log(err))
     }
 }
