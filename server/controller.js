@@ -24,10 +24,10 @@ addProduct:(req, res) => {
     editProduct:(req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
-        const {name, price, imageUrl} = req.body
+        const {name, price, imageUrl} = req.query
         db.edit_product(id, name, price, imageUrl)
         .then(() => {
-            res.sendStatus(200)
+            res.status(200).send(products)
         }).catch(err => console.log(err))
     }
 }
